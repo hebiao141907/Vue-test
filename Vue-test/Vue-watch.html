@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+      <input type="text" v-model="a">
+      <p>{{a}}</p>
+      <p>监听：{{b | touppercase}}</p>
+      <p>{{changeA}}</p>
+    </div>
+</body>
+<script>
+	var vm = new Vue({
+        el:"#app",
+        data:{
+            a:"aaa",
+            b:''
+        },
+        filters: {
+            touppercase: function (value) {
+              if (!value){ return ''}
+              value = value.toString()
+              return value.toUpperCase()
+            }
+        },
+        watch:{
+            a:function (val,oldVal){
+               this.b = val
+            }
+            // c:{       //深度监听
+            //     handeler:function (val,oldval){
+
+            //     },
+            //     deep:true
+            // }
+        },
+        computed:{
+            changeA:function (){
+                return this.a + this.b
+            }    
+        }
+    })
+</script>
+</html>

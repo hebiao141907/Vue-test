@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+	<link rel="stylesheet" href="http://apps.bdimg.com/libs/animate.css/3.1.0/animate.css">
+	<style>
+		#box{width: 400px;margin:0 auto;}
+		#box div{width: 100px; height: 100px;background: red;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<button @click="toggle()">按钮</button>
+		<transition name="bounce" enter-active-class="animated bounceInLeft" leave-active-class="animated bounceOutRight">
+			<div v-show="show">
+			</div>
+		</transition>
+	</div>
+</body>
+<script>
+	var vm = new Vue({
+		el:'#box',
+		data:{
+			show:true
+		},
+		methods:{
+			toggle:function(){
+				this.show = !this.show
+			}
+		}
+	})
+
+</script>
+</html>

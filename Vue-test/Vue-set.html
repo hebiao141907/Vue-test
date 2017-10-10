@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+        <ul>
+            <li v-for=" item in arr">{{item}}</li>
+        </ul>
+       
+    </div>
+    <button onclick="add()">外部添加数据</button>
+</body>
+<script>
+	
+	   function add(){
+            console.log("我已经执行了");
+          // app.arr[1]='ddd';
+           Vue.set(app.arr,1,'ddd');
+        }
+        var outData={
+            arr:['aaa','bbb','ccc']
+        };
+        var app=new Vue({
+            el:'#app',
+            data:outData
+        })
+</script>
+</html>

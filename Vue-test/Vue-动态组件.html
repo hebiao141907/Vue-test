@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+</head>
+<body>
+	<div id="box">
+        <button @click="temp='aa'">组件a</button>
+        <button @click="temp='bb'">组件b</button>
+        <component :is="temp"></component>  
+    </div>
+</body>
+<script>
+var vm = new Vue({
+    el:"#box",
+    data:{
+        temp:'aa'
+    },
+    components:{
+        "aa":{
+            template:"<h2>我是a组件</h2>"
+        },
+        "bb":{
+            template:"<h2>我是b组件</h2>"
+        }
+    }
+})
+</script>
+</html>

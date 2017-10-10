@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+	<link rel="stylesheet" href="http://apps.bdimg.com/libs/animate.css/3.1.0/animate.css">
+	<style>
+		#box{width: 400px;margin:0 auto;}
+		#box p{width: 100px; height: 100px;background: red;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<input type="text" v-model="show">
+		<transition-group name="bounce" enter-active-class="animated bounceInLeft" leave-active-class="animated bounceOutRight">
+			<p v-show="show" v-for="(val,index) in list" :key="index">
+			{{val}}
+			</p>
+		</transition-group>
+	</div>
+</body>
+<script>
+	var vm = new Vue({
+		el:'#box',
+		data:{
+			show:'',
+			arr:["a","b","c","d","e","f","g"]
+		},
+		methods:{
+
+		},
+		computed:{
+			list:function (){
+				var arr2 = [];
+				this.arr.forEach(function (val,index){
+					if(this.show.indexOf(val)!=-1){
+						arr2.push(val)
+					}
+				}.bind(this));
+				return arr2;
+			}
+		}
+	})
+
+</script>
+</html>

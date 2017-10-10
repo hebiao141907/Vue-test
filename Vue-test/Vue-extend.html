@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+</head>
+<body>
+	<author></author>	
+</body>
+<script>
+	
+	var authorExtend = Vue.extend({
+        template:"<p><a v-bind:href='authorUrl'>{{authorName}}</a></p>",
+        data:function(){
+            return{
+                authorName:'baidu',
+                authorUrl:'http://www.baidu.com'
+             }
+        }
+    });
+    new authorExtend().$mount('author'); //挂载
+
+    // Vue.component('my-component', {
+    //   template: '<div>A custom component!</div>'
+    // })
+</script>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div v-self="color" id="demo">
+			{{num}}
+		</div>
+		<div>
+			<button @click="add">add</button>
+		</div>
+	</div>
+	<button onclick="del()">del</button>
+</body>
+<script>
+	Vue.directive('self',function (el,binding,vnode){
+		//console.log(el);
+		//console.log(binding);
+		//console.log(vnode);
+		el.style = 'color:'+binding.value;
+	})
+	Vue.directive('self',{
+		bind:function(){//被绑定
+	     console.log('1 - bind');
+		},
+		inserted:function(){//绑定到节点
+		      console.log('2 - inserted');
+		},
+		update:function(){//组件更新
+		      console.log('3 - update');
+		},
+		componentUpdated:function(){//组件更新完成
+		      console.log('4 - componentUpdated');
+		},
+		unbind:function(){//解绑
+		      console.log('1 - unbind');
+		}
+	})
+
+	// function del(){     //解绑Vue
+	// 	app.$destroy();
+	// }
+
+	var app = new Vue({
+		el:'#app',
+		data:{
+			num:10,
+			color:'green'
+		},
+		methods:{
+			add:function (){
+				this.num++;
+			}
+		}
+	})
+</script>
+</html>

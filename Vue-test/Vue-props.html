@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+</head>
+<body>
+	<div id="box">
+        <aa></aa>
+    </div>
+    <template id="a">
+        <div>
+            <input type="text" v-model="n">
+            <h1>{{msg}}->{{n}}</h1>
+            <!-- <bb :my-msg="n"></bb> -->
+            <bb v-bind="arr":my-msg="n"></bb>
+        </div>
+    </template>
+</body>
+<script>
+var vm = new Vue({
+    el:'#box',
+    components:{
+        'aa':{
+            template:"#a",
+            data:function (){
+                return {
+                    msg:"父组件的数据",
+                    n:1,
+                    arr:{
+                        text: 'Learn Vue',
+                        isComplete: false
+                    }
+                }
+            },
+            components:{
+                'bb':{
+                     props:["myMsg",'text','isComplete'],
+                    template:"<h2>我是子组件->{{myMsg}},{{text}},{{isComplete}}</h2>"
+                } 
+            }
+        }
+    }
+})
+</script>
+</html>
